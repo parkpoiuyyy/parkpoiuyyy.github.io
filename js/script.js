@@ -1,3 +1,30 @@
+$(document).ready(function() {
+
+    //initialize firebase
+    const config={
+    	    apiKey: "AIzaSyA1pmhjx3VOwaPwZ1ZWxAAspb9HNlOmQbA",
+    	    authDomain: "portfolio-2bbe6.firebaseapp.com",
+    	    databaseURL: "https://portfolio-2bbe6.firebaseio.com",
+    	    projectId: "portfolio-2bbe6",
+    	    storageBucket: "portfolio-2bbe6.appspot.com",
+    	    messagingSenderId: "379948564110"
+    };
+    firebase.initializeApp(config);
+    
+    var counterPath = firebase.database().ref();
+    counterPath.once('value').then(function(snapshot) {
+      var counter = snapshot.val().portCounter+1;
+      firebase.database().ref().set({
+            portCounter : counter
+      });
+   
+    });    
+    
+
+});
+
+
+
 
   // niceScroll
   $("html").niceScroll();
