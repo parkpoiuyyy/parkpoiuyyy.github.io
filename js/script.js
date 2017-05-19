@@ -21,7 +21,7 @@ $(document).ready(function() {
     });    
     
     
-	$(document).on('click',"#google",function(){
+	$(document).on('click',"#googleSignin",function(){
 		console.log("Seen");
 	       var provider = new firebase.auth.GoogleAuthProvider();
 	       firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -45,10 +45,20 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(firebaseUser =>{
         if(firebaseUser){
           console.log(firebaseUser);
+          $('#googleSignin').hide();
+          $("#googleSignout").show();
+          $("#comment-add").show();
         }else{
         	console.log("not log in");
+        	$('#googleSignin').show();
+        	$("#googleSignout").hide();
+        	$("#comment-add").hide();
         }
     });
+    
+    $("#googleSignout").click(function(){
+        firebase.auth().signOut();
+    }); 
 });
 
 
