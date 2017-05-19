@@ -11,7 +11,7 @@ $(document).ready(function() {
     };
     firebase.initializeApp(config);
     
-    var counterPath = firebase.database().ref().child('counter');
+    const counterPath = firebase.database().ref().child('counter');
     counterPath.once('value').then(function(snapshot) {
       var counter = snapshot.val().portCounter+1;
       counterPath.set({
