@@ -44,6 +44,8 @@ $(document).ready(function() {
     
     firebase.auth().onAuthStateChanged(firebaseUser =>{
         if(firebaseUser){
+          var loggedinHtml=`<i id="googleSignout" style="float: right" class="fa fa-google-plus-official fa-2x">Hi, ${firebaseUser.email}.Sign out here.</i>`;
+          $("#googleSignout").html(loggedinHtml);
           console.log(firebaseUser);
           $('#googleSignin').hide();
           $("#googleSignout").show();
