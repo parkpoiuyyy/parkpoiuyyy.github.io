@@ -11,18 +11,47 @@ $(document).ready(function() {
     };
     firebase.initializeApp(config);
     
-    var counterPath = firebase.database().ref();
+    var counterPath = firebase.database().ref().child('counter');
     counterPath.once('value').then(function(snapshot) {
       var counter = snapshot.val().portCounter+1;
-      firebase.database().ref().set({
+      counterPath.set({
             portCounter : counter
       });
    
-    });    
+    }); 
+    
+    const messages = firebase.database().ref().child('messages');
+    messages.on('child_added', function(snapshot) {
+        var li_template="";
+        var comment=snapshot.val().content;
+        var name=snapshot.val().emailAddress;
+        var photoURL=snapshot.val().photoURL;
+        var timestamp = snapshot.val().time;
+        var time = moment(timestamp).format('LLL');
+			  li_template+=`    <li>
+			                 	    <div class="comment-main-level">
+							               <div class="comment-avatar"><img src="${photoURL}" alt=""></div>
+							               <div class="comment-box">
+						                 		<div class="comment-head">
+						                 				<h6 class="comment-name"><a>${name}</a></h6>
+							                 			<span>${time}</span>
+								                 		
+							                 			<i class="fa fa-heart"></i>
+							                 	</div>
+							                 	<div class="comment-content">
+							                 			${comment}
+						                 		</div>
+						                 	</div>
+					                 	</div>
+				                 	</li>`;
+        document.querySelector("#comments-list").innerHTML += li_template;
+        
+    });
+    
     
     
 	$(document).on('click',"#googleSignin",function(){
-		console.log("Seen");
+		
 	       var provider = new firebase.auth.GoogleAuthProvider();
 	       firebase.auth().signInWithPopup(provider).then(function(result) {
 	       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -41,6 +70,32 @@ $(document).ready(function() {
 	       // ...
 	       });
 	}); 
+	
+    $(document).on('click','#submit-add',function(){
+      if(this.form.userCmnt.value==0){
+        alert('Message cant be void');
+      }else{
+      var user = firebase.auth().currentUser;
+      var uid;
+      var email;
+      var photo;
+      if (user != null){
+        uid=user.uid;
+        email=user.email;
+        photo=user.photoURL;
+      }
+      firebase.database().ref().child('messages').push({
+          sender : uid,
+          content : this.form.userCmnt.value ,
+          emailAddress : email,
+          photoURL: photo,
+          time : firebase.database.ServerValue.TIMESTAMP
+      }); 
+      $("#userCmnt").val("");
+      }
+    }); 
+    
+    
     
     firebase.auth().onAuthStateChanged(firebaseUser =>{
         if(firebaseUser){
