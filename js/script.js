@@ -49,6 +49,27 @@ $(document).ready(function() {
     });
     
     
+  document.getElementById("fileButton").addEventListener('change',function(e){
+    var file =e.target.files[0];
+    firebase.storage().ref('photos/'+file.name);
+    var task = storageRef.put(file);
+    task.on('state_changed',
+       
+       function progress(snaspshot){
+         var percentage=(snapshot.bytesTransferred/snapshot.totalBytes) *100;
+         document.getElementById('uploader').value=percentage;
+       },
+       function error(err){
+         
+       },
+       function complete(){
+         
+       }
+    );
+    
+  });  
+  
+    
     
 	$(document).on('click',"#googleSignin",function(){
 		
