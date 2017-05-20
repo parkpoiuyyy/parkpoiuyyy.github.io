@@ -51,7 +51,7 @@ $(document).ready(function() {
     
   document.getElementById("fileButton").addEventListener('change',function(e){
     var file =e.target.files[0];
-    firebase.storage().ref('photos/'+file.name);
+    var storageRef = firebase.storage().ref('photos/'+file.name);
     var task = storageRef.put(file);
     task.on('state_changed',
        
