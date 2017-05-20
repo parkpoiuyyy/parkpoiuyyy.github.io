@@ -55,7 +55,7 @@ $(document).ready(function() {
     var task = storageRef.put(file);
     task.on('state_changed',
        
-       function progress(snaspshot){
+       function progress(snapshot){
          var percentage=(snapshot.bytesTransferred/snapshot.totalBytes) *100;
          document.getElementById('uploader').value=percentage;
        },
