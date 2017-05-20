@@ -63,7 +63,12 @@ $(document).ready(function() {
          
        },
        function complete(){
-         
+          storageRef.getDownloadURL().then(function(url) {
+            console.log(url);
+
+          }).catch(function(error) {
+           // Handle any errors
+          });
        }
     );
     
