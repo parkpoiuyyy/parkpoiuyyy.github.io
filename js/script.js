@@ -64,8 +64,8 @@ $(document).ready(function() {
        },
        function complete(){
           storageRef.getDownloadURL().then(function(url) {
-            document.getElementById("fileButton").setAttribute("data", url);
-            console.log(url);
+            document.getElementById("submit-add").setAttribute("data", url);
+            console.log('submit-add');
 
           }).catch(function(error) {
            // Handle any errors
