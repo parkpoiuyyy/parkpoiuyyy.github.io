@@ -26,6 +26,7 @@ $(document).ready(function() {
         var comment=snapshot.val().content;
         var name=snapshot.val().emailAddress;
         var photoURL=snapshot.val().photoURL;
+        var commenturl=snapshot.val().commentURL;
         var timestamp = snapshot.val().time;
         var time = moment(timestamp).format('LLL');
 			  li_template+=`    <li>
@@ -39,6 +40,7 @@ $(document).ready(function() {
 							                 			<i class="fa fa-heart"></i>
 							                 	</div>
 							                 	<div class="comment-content">
+							                 	<img src="${commenturl}" alt="">
 							                 			${comment}
 						                 		</div>
 						                 	</div>
@@ -65,7 +67,7 @@ $(document).ready(function() {
        function complete(){
           storageRef.getDownloadURL().then(function(url) {
             document.getElementById("submit-add").setAttribute("data", url);
-            console.log('submit-add');
+            
 
           }).catch(function(error) {
            // Handle any errors
@@ -106,6 +108,7 @@ $(document).ready(function() {
       var uid;
       var email;
       var photo;
+      var commenturl = document.getElementById("submit-add").getAttribute("data");
       if (user != null){
         uid=user.uid;
         email=user.email;
@@ -116,9 +119,12 @@ $(document).ready(function() {
           content : this.form.userCmnt.value ,
           emailAddress : email,
           photoURL: photo,
+          commentURL: commenturl,
           time : firebase.database.ServerValue.TIMESTAMP
       }); 
       $("#userCmnt").val("");
+      document.getElementById("submit-add").setAttribute("data", '');
+      document.getElementById('uploader').value=0;
       }
     }); 
     
