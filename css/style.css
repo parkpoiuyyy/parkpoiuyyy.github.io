@@ -1181,3 +1181,11 @@ fieldset{
   width: 50%;
   margin-bottom: 10px;
 }
+
+#commentImage{
+  display: block;
+  max-width:450px;
+  max-height:450px;
+  width: auto;
+  height: auto;
+}

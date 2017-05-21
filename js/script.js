@@ -40,7 +40,7 @@ $(document).ready(function() {
 							                 			<i class="fa fa-heart"></i>
 							                 	</div>
 							                 	<div class="comment-content">
-							                 	<img src="${commenturl}" alt="">
+							                 	<img id="commentImage" src="${commenturl}" alt="">
 							                 			${comment}
 						                 		</div>
 						                 	</div>
