@@ -29,6 +29,7 @@ $(document).ready(function() {
         var commenturl=snapshot.val().commentURL;
         var timestamp = snapshot.val().time;
         var time = moment(timestamp).format('LLL');
+	var commentId='1';
 			  li_template+=`    <li>
 			                 	    <div class="comment-main-level">
 							               <div class="comment-avatar"><img src="${photoURL}" alt=""></div>
@@ -39,7 +40,7 @@ $(document).ready(function() {
 								                 		
 							                 			<i class="fa fa-heart"></i>
 							                 	</div>
-							                 	<div class="comment-content">
+							                 	<div class="comment-content" id="comment-${commentId}">
 							                 	<img id="commentImage" src="${commenturl}" alt="">
 							                 	${comment}
 						                 		</div>
@@ -47,6 +48,8 @@ $(document).ready(function() {
 					                 	</div>
 				                 	</li>`;
         $("#comments-list").append(li_template);
+	document.getElementById(`#comment-${commentId}`).textContent = `${comment}`;
+	commentId++;
         
     });
     
