@@ -29,7 +29,7 @@ $(document).ready(function() {
         var commenturl=snapshot.val().commentURL;
         var timestamp = snapshot.val().time;
         var time = moment(timestamp).format('LLL');
-	console.log(snapshot.val());
+	console.log(snapshot.key());
 	var commentId='1';
 			  li_template+=`    <li>
 			                 	    <div class="comment-main-level">
