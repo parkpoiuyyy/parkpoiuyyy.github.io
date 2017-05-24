@@ -42,13 +42,13 @@ $(document).ready(function() {
 							                 	</div>
 							                 	<div class="comment-content" id="comment-${commentId}">
 							                 	<img id="commentImage" src="${commenturl}" alt="">
-							                 	${comment}
+							                 	
 						                 		</div>
 						                 	</div>
 					                 	</div>
 				                 	</li>`;
         $("#comments-list").append(li_template);
-	document.getElementById(`comment-${commentId}`).textContent = `${comment}`;
+	$(`#comment-${commentId}`).text(`${comment}`);
 	commentId++;
         
     });
