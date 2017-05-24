@@ -46,7 +46,7 @@ $(document).ready(function() {
 						                 	</div>
 					                 	</div>
 				                 	</li>`;
-        document.querySelector("#comments-list").innerHTML += li_template;
+        $("#comments-list").append(li_template);
         
     });
     
