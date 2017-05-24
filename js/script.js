@@ -49,6 +49,7 @@ $(document).ready(function() {
 				                 	</li>`;
         $("#comments-list").append(li_template);
 	$(`#comment-${commentId}`).text(`${comment}`);
+	$(`#comment-${commentId}`).append(`<img id="commentImage" src="${commenturl}" alt="">`);
 	
         
     });
