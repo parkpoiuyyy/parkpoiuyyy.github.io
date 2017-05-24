@@ -41,7 +41,7 @@ $(document).ready(function() {
 							                 	</div>
 							                 	<div class="comment-content">
 							                 	<img id="commentImage" src="${commenturl}" alt="">
-							                 	<p>${comment}</p>
+							                 	${comment}
 						                 		</div>
 						                 	</div>
 					                 	</div>
