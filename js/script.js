@@ -29,8 +29,7 @@ $(document).ready(function() {
         var commenturl=snapshot.val().commentURL;
         var timestamp = snapshot.val().time;
         var time = moment(timestamp).format('LLL');
-	console.log(snapshot.key);
-	var commentId='1';
+	var commentId=snapshot.key;
 			  li_template+=`    <li>
 			                 	    <div class="comment-main-level">
 							               <div class="comment-avatar"><img src="${photoURL}" alt=""></div>
@@ -50,7 +49,7 @@ $(document).ready(function() {
 				                 	</li>`;
         $("#comments-list").append(li_template);
 	$(`#comment-${commentId}`).text(`${comment}`);
-	commentId++;
+	
         
     });
     
