@@ -48,7 +48,7 @@ $(document).ready(function() {
 					                 	</div>
 				                 	</li>`;
         $("#comments-list").append(li_template);
-	document.getElementById(`#comment-${commentId}`).textContent = `${comment}`;
+	document.getElementById(`comment-${commentId}`).textContent = `${comment}`;
 	commentId++;
         
     });
